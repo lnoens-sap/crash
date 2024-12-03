@@ -1,7 +1,14 @@
 using { crashns as my } from '../db/schema';
 
-@path: '/service/MyCrashProjectSvcs'
-@requires: 'authenticated-user'
-service crashsvcService {
-
+@path : '/service/MyCrashProjectSvcs'
+service crashsvcService
+{
+    @odata.draft.enabled
+    entity Products as
+        projection on my.Products;
 }
+
+annotate crashsvcService with @requires :
+[
+    'authenticated-user'
+];
